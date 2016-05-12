@@ -4,6 +4,7 @@ import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.SimpleType;
+import com.martinziserman.movieapp.MovieApplication;
 import com.martinziserman.movieapp.model.Movie;
 import com.martinziserman.movieapp.model.MovieResult;
 import com.spothero.volley.JacksonRequest;
@@ -18,7 +19,7 @@ public class NetworkManager {
         void onFail();
     }
 
-    public void findMovies(String title, final MovieResultListener listener) {
+    public static void findMovies(String title, final MovieResultListener listener) {
         String url = "http://api.themoviedb.org/3/search/movie?api_key=c1ac741d5dd740f9861e794c5363b0c2&query=alien";
         JacksonRequest<MovieResult> request =
                 new JacksonRequest<MovieResult>(Request.Method.GET,
@@ -46,6 +47,11 @@ public class NetworkManager {
                 return SimpleType.construct(MovieResult.class);
             }
         });
+
+        MovieApplication
+                .getInstance()
+                .getRequestQueue()
+                .add(request);
 
     }
 }
