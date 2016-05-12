@@ -2,7 +2,9 @@ package com.martinziserman.movieapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
 
+import com.martinziserman.movieapp.Adapter.MoviesAdapter;
 import com.martinziserman.movieapp.model.Movie;
 
 import java.util.ArrayList;
@@ -33,5 +35,13 @@ public class MainActivity extends AppCompatActivity {
         movies.add(new Movie("Pixels"));
         movies.add(new Movie("Les visiteurs"));
         movies.add(new Movie("Star wars"));
+
+        ListView moviesListView = (ListView) findViewById(R.id.movies_listview);
+        MoviesAdapter moviesAdapter = new MoviesAdapter(this);
+
+        moviesListView.setAdapter(moviesAdapter);
+
+        moviesAdapter.refreshWithMovies(movies);
+
     }
 }
