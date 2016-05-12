@@ -1,10 +1,18 @@
 package com.martinziserman.movieapp.Adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.martinziserman.movieapp.model.Movie;
+
+import java.util.List;
+
 public class MoviesAdapter extends BaseAdapter {
+
+    private List<Movie> movies;
+    private LayoutInflater layoutInflater;
 
     @Override
     public int getCount() {
